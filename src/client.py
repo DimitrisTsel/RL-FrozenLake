@@ -1,5 +1,5 @@
-import logging  # Standard import first
-import requests  # Third-party imports next
+import logging
+import requests
 import numpy as np
 from stable_baselines3 import PPO, DQN
 from stable_baselines3.common.monitor import Monitor
@@ -27,7 +27,6 @@ def reset_env(game_id):
         np.ndarray: The initial observation after reset.
     """
     response = requests.post(RESET_URL, json={'game_id': game_id}, timeout=10)
-    response.raise_for_status()
     data = response.json()
     if data['success']:
         observation = data['observation'][0]
@@ -48,7 +47,6 @@ def step_env(action, game_id):
     """
     response = requests.post(STEP_URL,
                              json={'game_id': game_id, 'action': int(action)}, timeout=10)
-    response.raise_for_status()
     data = response.json()
     if data['success']:
         next_observation = np.array(data['observation'])
@@ -67,7 +65,6 @@ def new_game():
         The game uuid.
     """
     response = requests.get(NEW_GAME_URL, timeout=10)
-    response.raise_for_status()
     data = response.json()
     if data['success']:
         game_id = data['game_id']
