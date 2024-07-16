@@ -72,5 +72,5 @@ class FrozenLakeAPI:
         return response_data , 200, {'ContentType': 'application/json'}
 
 if __name__ == '__main__':
-    emulation_api = FrozenLakeAPI()
-    emulation_api.run_server()
+    api_server = FrozenLakeAPI()
+    api_server.run_server()
