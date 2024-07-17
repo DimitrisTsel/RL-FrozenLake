@@ -135,36 +135,41 @@ def main():
     dqn_custom_policy_model_path = "models/DQN_policy_kwargs/280000.zip"
     ppo_model_path = "models/PPO/130000.zip"
     ppo_custom_policy_model_path = "models/PPO_policy_kwargs/250000.zip"
+    ppo_custom_reward_model_path = "models/PPO_custom_reward/180000.zip"
 
     dqn_model = DQN.load(dqn_model_path, env=env)
     dqn_custom_policy_model = DQN.load(dqn_custom_policy_model_path, env=env)
     ppo_model = PPO.load(ppo_model_path, env=env)
     ppo_custom_policy_model = PPO.load(ppo_custom_policy_model_path, env=env)
 
+    ppo_custom_reward_model = PPO.load(ppo_custom_reward_model_path, env=env)
+
+
 
     logger.info("Evaluating DQN model...")
     evaluate_model(dqn_model, env)
-
     logger.info("Testing DQN model...")
     test_model(dqn_model, "DQN")
 
     logger.info("Evaluating DQN_custom_policy model...")
     evaluate_model(dqn_custom_policy_model, env)
-
     logger.info("Testing DQN_custom_policy model...")
     test_model(dqn_custom_policy_model, "DQN_custom_policy")
 
     logger.info("Evaluating PPO model...")
     evaluate_model(ppo_model, env)
-
     logger.info("Testing PPO model...")
     test_model(ppo_model, "PPO")
 
     logger.info("Evaluating PPO_custom_policy model...")
     evaluate_model(ppo_custom_policy_model, env)
-
     logger.info("Testing PPO_custom_policy model...")
     test_model(ppo_custom_policy_model, "PPO_custom_policy")
+
+    logger.info("Evaluating PPO_custom_reward model...")
+    evaluate_model(ppo_custom_reward_model, env)
+    logger.info("Testing PPO_custom_reward model...")
+    test_model(ppo_custom_reward_model, "PPO_custom_reward")
 
 
 
