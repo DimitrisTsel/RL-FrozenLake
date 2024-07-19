@@ -53,7 +53,7 @@ and to train a PPO model with custom reward logic, run: `model_train_PPO_custom_
 This will save the trained models either on models/DQN or on models/PPO directory, and log training details under the logs directory.
 **Description:**
   - The scripts use the DQN and PPO algorithms from Stable-Baselines3 to train a model on the FrozenLake-v1 environment.
-  - A custom policy architecture is also defined for both DQN and PPO models. An extra linear layer is added on top of the layers specified in net_arch with two hidden layers with 32 neurons each and retrained the models.  
+  - A custom policy architecture is also defined for both DQN and PPO models. An extra linear layer is added on top of the layers specified in net_arch with two hidden layers with 32 neurons each and retrained the models.
     ref: https://stable-baselines3.readthedocs.io/en/master/guide/custom_policy.html
   - A custom reward wrapper created for modifying the reward logic of the environment. By overriding the reward method, the CustomRewardWrapper modified the reward logic assigning a penalty of -1 for each step taken and a reward
     of 10 forn reaching the goal. Then, the agent retrained, but only with the PPO algorithm.
@@ -67,7 +67,7 @@ To start the FrozenLake API, run: `python src/FrozenLakeAPI_structure.py`
 The server host address is  http://localhost:5005.
 
 ### API Endpoints
-- [GET]  /new_game: Creates a new game and returns a unique game_id using uuid.
+- [POST]  /new_game: Creates a new game and returns a unique game_id using uuid.
 - [POST] /reset: Resets the environment for the specified game_id.
 - [POST] /step: Takes a step in the environment for the specified game_id using the provided action.
 
@@ -115,8 +115,8 @@ The PPO model has the highest success rate (in the above example is equal to 0.8
 The DQN model follows closely with a success rate of 0.81 and an average reward of 0.81.
 Custom policy models for both DQN and PPO show slightly lower success rates and average rewards compared to their default setups.
 About the custom reward PPO model, the low mean reward (0.04) with the custom reward wrapper suggests that the agent is facing challenges in learning to navigate the environment effectively and find the final goal (G).
-This might mean that the reward logic of penalizing every step the agent takes (-1 reward) and only providing a reward (+10) when the agent successfully reaches the goal, doesn't help the agent to learn effectively. 
-Also, a success rate of 0.02 means that the agent completed the task in 2% of the evaluation episodes. 
+This might mean that the reward logic of penalizing every step the agent takes (-1 reward) and only providing a reward (+10) when the agent successfully reaches the goal, doesn't help the agent to learn effectively.
+Also, a success rate of 0.02 means that the agent completed the task in 2% of the evaluation episodes.
 
 Mean Reward and Standard Deviation:
 The PPO model again shows a good performance with a mean reward of 0.80 in the above example and a standard deviation of 0.40, meaning more consistent performance.

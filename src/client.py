@@ -64,7 +64,7 @@ def new_game():
     Returns:
         The game uuid.
     """
-    response = requests.get(NEW_GAME_URL, timeout=10)
+    response = requests.post(NEW_GAME_URL, timeout=10)
     data = response.json()
     if data['success']:
         game_id = data['game_id']

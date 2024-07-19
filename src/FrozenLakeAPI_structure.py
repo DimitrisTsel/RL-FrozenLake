@@ -10,7 +10,7 @@ class FrozenLakeAPI:
         self.games: Dict[str, gym.Env] = {}
 
     def run_server(self) -> None:
-        self.app.route('/new_game', methods=['GET'])(self.new_game)
+        self.app.route('/new_game', methods=['POST'])(self.new_game)
         self.app.route('/step', methods=['POST'])(self.step)
         self.app.route('/reset', methods=['POST'])(self.reset)
         self.app.run(host="localhost", port=5005, threaded=True)
